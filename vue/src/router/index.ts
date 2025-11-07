@@ -1,27 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import GameView from '../views/GameView.vue'
-import InventoryView from '../views/InventoryView.vue'
-import FishingMinigame from '../views/FishingMinigame.vue'
+import { createWebHistory, createRouter, RouteRecordRaw } from 'vue-router'
+import IndexPage from '@/components/pages/IndexPage.vue'
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'game',
-      component: GameView
-    },
-    {
-      path: '/inventory',
-      name: 'inventory',
-      component: InventoryView
-    },
-    {
-      path: '/fishing',
-      name: 'fishing',
-      component: FishingMinigame
-    }
-  ]
+export const ROUTES = {
+  INDEX: 'INDEX',
+} as const
+
+const routes: RouteRecordRaw[] = [
+  {
+    name: ROUTES.INDEX,
+    path: '/',
+    component: IndexPage
+  },
+]
+
+export const router = createRouter({
+  history: createWebHistory('/'),
+  routes,
 })
-
-export default router
