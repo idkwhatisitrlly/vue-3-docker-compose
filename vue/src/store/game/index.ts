@@ -90,9 +90,13 @@ export default {
       state.zones = payload
     },
     [MUTATIONS.ADD_FISH]: (state: GameState, type: string) => {
-      if (type === 'high') state.inventory.rare += 1
-      else if (type === 'medium') state.inventory.good += 1
-      else state.inventory.common += 1
+      if (type === 'high') {
+        state.inventory.rare += 1
+      } else if (type === 'medium') {
+        state.inventory.good += 1
+      } else {
+        state.inventory.common += 1
+      }
     },
   },
   actions: {

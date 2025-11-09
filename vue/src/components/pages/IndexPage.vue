@@ -4,13 +4,13 @@
       <div
         v-for="(c, i) in zones.medium"
         :key="'m'+i"
-        class="zone zone--medium"
+        class="zone zone__medium"
         :style="circleStyle(c)"
       ></div>
       <div
         v-for="(c, i) in zones.high"
         :key="'h'+i"
-        class="zone zone--high"
+        class="zone zone__high"
         :style="circleStyle(c)"
       ></div>
     </div>
@@ -20,10 +20,10 @@
     </div>
     <div class="game__controls-area">
       <div class="game__controls">
-        <button class="game__button" @click="startFishing" :disabled="waiting || active">Старт</button>
+        <button class="game__button" :disabled="waiting || active" @click="startFishing">Старт</button>
         <div class="game__waiting" v-if="waiting">Ожидание поклёвки...</div>
       </div>
-      <FishingMiniGame :active="active" @result="onMiniResult" />
+      <FishingMiniGame @result="(ok) => onMiniResult(ok)" v-if="active" />
     </div>
     <div class="game__inventory">
       <InventoryPanel :inventory="inventory" />
@@ -242,12 +242,12 @@ const saveThrottled = (): void => {
   border: 2px dashed rgba(0, 0, 0, 0.35);
   background: rgba(255, 255, 255, 0.1);
 
-  &--medium {
+  &__medium {
     border-color: rgba(241, 196, 15, 0.8);
     background: rgba(241, 196, 15, 0.15);
   }
 
-  &--high {
+  &__high {
     border-color: rgba(231, 76, 60, 0.85);
     background: rgba(231, 76, 60, 0.15);
   }

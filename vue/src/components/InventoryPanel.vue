@@ -23,40 +23,48 @@ defineProps<{ inventory: { common: number, good: number, rare: number } }>()
 </script>
 
 <style scoped lang="less">
+@bg-primary: rgba(255, 255, 255, 0.2);
+@bg-secondary: rgba(255, 255, 255, 0.4);
+@bg-dark: rgba(0, 0, 0, 0.2);
+@border-radius: 8px;
+@border-radius-large: 12px;
+@spacing: 8px;
+@spacing-large: 12px;
+
+.block-base(@bg, @radius) {
+  padding: @spacing;
+  background: @bg;
+  border-radius: @radius;
+}
+
 .inventory {
   width: 260px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  .block-base(@bg-primary, @border-radius-large);
   backdrop-filter: blur(4px);
-}
 
-.inventory__title {
-  font-weight: 700;
-  margin-bottom: 8px;
-}
+  &__title {
+    font-weight: 700;
+    margin-bottom: @spacing;
+  }
 
-.inventory__grid {
-  display: grid;
-  grid-template-columns: 1fr 80px;
-  row-gap: 8px;
-  column-gap: 8px;
-}
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    row-gap: @spacing;
+    column-gap: @spacing;
+  }
 
-.inventory__item {
-  display: contents;
-}
+  &__item {
+    display: contents;
+  }
 
-.inventory__name {
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 8px;
-}
+  &__name {
+    .block-base(@bg-secondary, @border-radius);
+  }
 
-.inventory__count {
-  padding: 8px;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  &__count {
+    .block-base(@bg-dark, @border-radius);
+    text-align: center;
+  }
 }
 </style>

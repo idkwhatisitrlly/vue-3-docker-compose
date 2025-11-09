@@ -4,14 +4,12 @@
       <div class="fishing-mini__target"></div>
       <div class="fishing-mini__indicator" :style="{ bottom: pos + '%' }"></div>
     </div>
-    <div class="fishing-mini__hint" v-if="!props.active">Нажми Старт</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
-const props = defineProps<{ active?: boolean }>()
 const emit = defineEmits<{ (e: 'result', ok: boolean): void }>()
 
 const pos = ref<number>(50)
@@ -36,7 +34,6 @@ const loop = (t: number): void => {
 }
 
 const onKey = (e: KeyboardEvent): void => {
-  if (!props.active) return
   if (e.code === 'Space') {
     e.preventDefault()
     const ok: boolean = pos.value <= 10
@@ -44,23 +41,9 @@ const onKey = (e: KeyboardEvent): void => {
   }
 }
 
-watch(() => props.active, (v: boolean | undefined): void => {
-  if (v) {
-    cancelAnimationFrame(raf)
-    last = 0
-    raf = requestAnimationFrame(loop)
-    window.addEventListener('keydown', onKey)
-  } else {
-    cancelAnimationFrame(raf)
-    window.removeEventListener('keydown', onKey)
-  }
-})
-
 onMounted(() => {
-  if (props.active) {
-    raf = requestAnimationFrame(loop)
-    window.addEventListener('keydown', onKey)
-  }
+  raf = requestAnimationFrame(loop)
+  window.addEventListener('keydown', onKey)
 })
 
 onUnmounted(() => {

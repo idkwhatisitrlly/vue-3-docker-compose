@@ -54,28 +54,28 @@ const emitEvent = () => {
     border-color: #42b883;
     background-color: #f8f9fa;
   }
-}
 
-.example-component__title {
-  margin: 0 0 0.5rem 0;
-  color: #2c3e50;
-}
+  &__title {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+  }
 
-.example-component__description {
-  margin: 0 0 1rem 0;
-  color: #666;
-}
+  &__description {
+    margin: 0 0 1rem 0;
+    color: #666;
+  }
 
-.example-component__button {
-  padding: 0.5rem 1rem;
-  background-color: #42b883;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  &__button {
+    padding: 0.5rem 1rem;
+    background-color: #42b883;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 
-  &:hover {
-    background-color: #369b74;
+    &:hover {
+      background-color: #369b74;
+    }
   }
 }
 </style>
